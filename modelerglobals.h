@@ -10,7 +10,12 @@
 // of the controls from the user interface.
 enum SampleModelControls
 { 
-	XPOS, YPOS, ZPOS, HEIGHT, ROTATE, NUMCONTROLS
+	XPOS = 0, 
+	YPOS = 1, 
+	ZPOS = 2, 
+	LEFT_TOOTH_ROTATE_Y = 3,
+	RIGHT_TOOTH_ROTATE_Y = 4,
+	NUMCONTROLS
 };
 
 // Colors

@@ -48,211 +48,261 @@ void SampleModel::draw()
 	glPushMatrix();
 		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 		glTranslated(0, 1, 0);
-		drawSphere(1);
-
-		// belly
 		glPushMatrix();
 			glScaled(1.3, 1, 1);
-			glTranslated(1.5, 0, 0);
-			drawSphere(1.2);
+			drawSphere(0.7);
 		glPopMatrix();
 
-		// head
-		glPushMatrix();
-			glTranslated(-0.7, 0, 0);
-			drawSphere(0.5);
 
+		// head part
+		glPushMatrix();
+			glTranslated(-0.6, 0, 0);
+			drawSphere(0.5);
+	
+			// left tooth
+			glPushMatrix();
+				glTranslated(-0.3, 0, 0.2);
+				glRotated(VAL(LEFT_TOOTH_ROTATE_Y), 0, 1, 0);
+				drawCylinder(0.5, 0.25, 0.05);
+			glPopMatrix();
+	
+			// right tooth
+			glPushMatrix();
+				glTranslated(-0.3, 0, -0.2);
+				glRotated(VAL(RIGHT_TOOTH_ROTATE_Y), 0, 1, 0);
+				drawCylinder(0.5, 0.25, 0.05);
+			glPopMatrix();
+	
 			// left antenna
 			glPushMatrix();
-				glTranslated(-0.3, 0, 0.3);
-				glRotated(-105, 0, 1, 0);
-				drawCylinder(0.5, 0.1, 0.1);
+				glTranslated(-0.3, 0, 0.4);
+				glRotated(-75, 0, 1, 0);
+				glRotated(-30, 1, 0, 0);
+				drawCylinder(1, 0.1, 0.1);
+	
+				glPushMatrix();
+					glTranslated(0, 0, 1);
+					glRotated(-30, 0, 1, 0);
+					glRotated(45, 1, 0, 0);
+					drawCylinder(0.7, 0.1, 0);
+				glPopMatrix();
 			glPopMatrix();
 			
 			// right antenna
 			glPushMatrix();
-				glTranslated(-0.3, 0, -0.3);
-				glRotated(-75, 0, 1, 0);
-				drawCylinder(0.5, 0.1, 0.1);
+				glTranslated(-0.3, 0, -0.4);
+				glRotated(-105, 0, 1, 0);
+				glRotated(-30, 1, 0, 0);
+				drawCylinder(1, 0.1, 0.1);
+	
+				glPushMatrix();
+					glTranslated(0, 0, 1);
+					glRotated(30, 0, 1, 0);
+					glRotated(45, 1, 0, 0);
+					drawCylinder(0.7, 0.1, 0);
+				glPopMatrix();
 			glPopMatrix();
-
 		glPopMatrix();
 
 		// legs
 		glPushMatrix();
-			glTranslated(0.5, 0, 0);
 
+			// left legs
 			glPushMatrix();
-				glTranslated(0, 0, 0.5);
-				glRotated(-45, 0, 1, 0);
-				drawCylinder(2, 0.1, 0.1);
+			glTranslated(0, 0, 0.3);
+
+				// left 1
+				glPushMatrix();
+					glRotated(-60, 0, 1, 0);
+					glRotated(-30, 1, 0, 0);
+					drawCylinder(2, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 2);
+						glRotated(-40, 0, 1, 0);
+						glRotated(50, 1, 0, 0);
+						drawCylinder(2, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 2);
+							glRotated(-20, 0, 1, 0);
+							glRotated(20, 1, 0, 0);
+							drawCylinder(2, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+	
+				// left 2
+				glPushMatrix();
+					glRotated(-30, 0, 1, 0);
+					glRotated(-25, 1, 0, 0);
+					drawCylinder(1.5, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 1.5);
+						glRotated(-30, 0, 1, 0);
+						glRotated(40, 1, 0, 0);
+						drawCylinder(1.5, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 1.5);
+							glRotated(-20, 0, 1, 0);
+							glRotated(30, 1, 0, 0);
+							drawCylinder(1.5, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+	
+				// left 3
+				glPushMatrix();
+					glRotated(20, 0, 1, 0);
+					glRotated(-30, 1, 0, 0);
+					drawCylinder(1.5, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 1.5);
+						glRotated(20, 0, 1, 0);
+						glRotated(50, 1, 0, 0);
+						drawCylinder(1.5, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 1.5);
+							glRotated(20, 0, 1, 0);
+							glRotated(40, 1, 0, 0);
+							drawCylinder(1.5, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+				
+				// left 4
+				glPushMatrix();
+					glRotated(60, 0, 1, 0);
+					glRotated(-20, 1, 0, 0);
+					drawCylinder(2, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 2);
+						glRotated(20, 0, 1, 0);
+						glRotated(40, 1, 0, 0);
+						drawCylinder(2, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 2);
+							glRotated(20, 0, 1, 0);
+							glRotated(20, 1, 0, 0);
+							drawCylinder(2, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+
+			// right legs
+			glPushMatrix();
+			glTranslated(0, 0, -0.3);
+
+				// right 1
+				glPushMatrix();
+					glRotated(-120, 0, 1, 0);
+					glRotated(-30, 1, 0, 0);
+					drawCylinder(2, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 2);
+						glRotated(40, 0, 1, 0);
+						glRotated(50, 1, 0, 0);
+						drawCylinder(2, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 2);
+							glRotated(20, 0, 1, 0);
+							glRotated(20, 1, 0, 0);
+							drawCylinder(2, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+	
+				// right 2
+				glPushMatrix();
+					glRotated(-150, 0, 1, 0);
+					glRotated(-25, 1, 0, 0);
+					drawCylinder(1.5, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 1.5);
+						glRotated(30, 0, 1, 0);
+						glRotated(40, 1, 0, 0);
+						drawCylinder(1.5, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 1.5);
+							glRotated(20, 0, 1, 0);
+							glRotated(30, 1, 0, 0);
+							drawCylinder(1.5, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+	
+				// right 3
+				glPushMatrix();
+					glRotated(160, 0, 1, 0);
+					glRotated(-30, 1, 0, 0);
+					drawCylinder(1.5, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 1.5);
+						glRotated(-20, 0, 1, 0);
+						glRotated(50, 1, 0, 0);
+						drawCylinder(1.5, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 1.5);
+							glRotated(-20, 0, 1, 0);
+							glRotated(40, 1, 0, 0);
+							drawCylinder(1.5, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+				
+				// right 4
+				glPushMatrix();
+					glRotated(120, 0, 1, 0);
+					glRotated(-20, 1, 0, 0);
+					drawCylinder(2, 0.1, 0.1);
+	
+					glPushMatrix();
+						glTranslated(0, 0, 2);
+						glRotated(-20, 0, 1, 0);
+						glRotated(40, 1, 0, 0);
+						drawCylinder(2, 0.1, 0.1);
+	
+						glPushMatrix();
+							glTranslated(0, 0, 2);
+							glRotated(-20, 0, 1, 0);
+							glRotated(20, 1, 0, 0);
+							drawCylinder(2, 0.1, 0);
+						glPopMatrix();
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+		glPopMatrix();
+		
+		// belly
+		glPushMatrix();
+			glScaled(1.1, 0.7, 0.8);
+			glTranslated(1.5, 0, 0);
+			drawSphere(1.2);
+
+			// spinneret
+			glPushMatrix();
+				glTranslated(1.1, 0, 0);
+				glRotated(90, 0, 1, 0);
+				drawCylinder(0.3, 0.2, 0);
 			glPopMatrix();
 		glPopMatrix();
 
 	glPopMatrix();
-
-	/*
-	glTranslated(0, 0, 2);
-
-	// palm
-	glPushMatrix();
-		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
-		glTranslated(0, 1, 0);
-		drawBox(2, 0.5, 1);
-
-		glTranslated(0, 0.25, 0);
-
-		// thumb
-		glPushMatrix();
-			glRotated(45, 0, 1, 0);
-			glTranslated(0, 0, -2);
-			drawCylinder(2.0, 0.3, 0.3);
-
-			glPushMatrix();
-				glTranslated(0, 0, -1.2);
-				drawCylinder(1.2, 0.25, 0.25);
-
-				glPushMatrix();
-					glTranslated(0, 0, -0.6);
-					drawCylinder(0.6, 0.2, 0.2);
-				glPopMatrix();
-
-			glPopMatrix();
-
-		glPopMatrix();
-
-		// forefinger
-		glPushMatrix();
-			glRotated(10, 0, 1, 0);
-			glTranslated(0.5, 0, -3);
-			drawCylinder(3, 0.25, 0.25);
-
-			glPushMatrix();
-				glRotated(5, 0, 1, 0);
-				glTranslated(0, 0, -2);
-				drawCylinder(2, 0.2, 0.2);
-
-				glPushMatrix();
-					glTranslated(0, 0, -1.2);
-					drawCylinder(1.2, 0.18, 0.18);
-
-					glPushMatrix();
-						glTranslated(0, 0, -0.5);
-						drawCylinder(0.5, 0.15, 0.15);
-					glPopMatrix();
-				glPopMatrix();
-
-			glPopMatrix();
-
-		glPopMatrix();
-
-		// middle finger
-		glPushMatrix();
-			glTranslated(1, 0, -3);
-			drawCylinder(3, 0.25, 0.25);
-
-			glPushMatrix();
-				glTranslated(0, 0, -2);
-				drawCylinder(2, 0.2, 0.2);
-
-				glPushMatrix();
-					glTranslated(0, 0, -1.5);
-					drawCylinder(1.5, 0.18, 0.18);
-
-					glPushMatrix();
-						glTranslated(0, 0, -0.6);
-						drawCylinder(0.6, 0.15, 0.15);
-					glPopMatrix();
-				glPopMatrix();
-
-			glPopMatrix();
-
-		glPopMatrix();
-
-		// ring finger
-		glPushMatrix();
-			glPushMatrix();
-			glRotated(-10, 0, 1, 0);
-			glTranslated(1.5, 0, -3);
-			drawCylinder(3, 0.25, 0.25);
-
-			glPushMatrix();
-				glRotated(-5, 0, 1, 0);
-				glTranslated(0, 0, -2);
-				drawCylinder(2, 0.2, 0.2);
-
-				glPushMatrix();
-					glTranslated(0, 0, -1.5);
-					drawCylinder(1.5, 0.18, 0.18);
-
-					glPushMatrix();
-						glTranslated(0, 0, -0.5);
-						drawCylinder(0.5, 0.15, 0.15);
-					glPopMatrix();
-				glPopMatrix();
-
-			glPopMatrix();
-
-		glPopMatrix();
-
-		// little finger
-		glPushMatrix();
-			glPushMatrix();
-			glRotated(-20, 0, 1, 0);
-			glTranslated(2, 0, -3);
-			drawCylinder(3, 0.25, 0.25);
-
-			glPushMatrix();
-				glRotated(-10, 0, 1, 0);
-				glTranslated(0, 0, -1.5);
-				drawCylinder(1.5, 0.18, 0.18);
-
-				glPushMatrix();
-					glTranslated(0, 0, -1.2);
-					drawCylinder(1.2, 0.15, 0.15);
-
-					glPushMatrix();
-						glTranslated(0, 0, -0.4);
-						drawCylinder(0.5, 0.12, 0.12);
-					glPopMatrix();
-				glPopMatrix();
-
-			glPopMatrix();
-
-		glPopMatrix();
-
-	glPopMatrix();
-	*/
-
-	/*
-	// draw the sample model
-	setAmbientColor(.1f,.1f,.1f);
-	setDiffuseColor(COLOR_GREEN);
-	glPushMatrix();
-	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
-
-		glPushMatrix();
-		glTranslated(-1.5, 0, -2);
-		glScaled(3, 1, 4);
-		drawBox(1,1,1);
-		glPopMatrix();
-
-		// draw cannon
-		glPushMatrix();
-		glRotated(VAL(ROTATE), 0.0, 1.0, 0.0);
-		glRotated(-90, 1.0, 0.0, 0.0);
-		drawCylinder(VAL(HEIGHT), 0.1, 0.1);
-
-		glTranslated(0.0, 0.0, VAL(HEIGHT));
-		drawCylinder(1, 1.0, 0.9);
-
-		glTranslated(0.0, 0.0, 0.5);
-		glRotated(90, 1.0, 0.0, 0.0);
-		drawCylinder(4, 0.1, 0.2);
-		glPopMatrix();
-
-	glPopMatrix();
-	*/
 }
 
 int main()
@@ -264,8 +314,8 @@ int main()
     controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
-    controls[HEIGHT] = ModelerControl("Height", 1, 2.5, 0.1f, 1);
-	controls[ROTATE] = ModelerControl("Rotate", -135, 135, 1, 0);
+    controls[LEFT_TOOTH_ROTATE_Y] = ModelerControl("Left Tooth Rotate Y", -60, -120, 1, -90);
+    controls[RIGHT_TOOTH_ROTATE_Y] = ModelerControl("Right Tooth Rotate Y", -60, -120, 1, -90);
 
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
