@@ -63,27 +63,27 @@ void SampleModel::draw()
 			glPushMatrix();
 				glTranslated(-0.3, 0, 0.2);
 				glRotated(VAL(LEFT_TOOTH_ROTATE_Y), 0, 1, 0);
-				drawCylinder(0.5, 0.25, 0.05);
+				drawCylinder(0.25, 0.25, 0.05);
 			glPopMatrix();
 	
 			// right tooth
 			glPushMatrix();
 				glTranslated(-0.3, 0, -0.2);
 				glRotated(VAL(RIGHT_TOOTH_ROTATE_Y), 0, 1, 0);
-				drawCylinder(0.5, 0.25, 0.05);
+				drawCylinder(0.25, 0.25, 0.05);
 			glPopMatrix();
 	
 			// left antenna
 			glPushMatrix();
 				glTranslated(-0.3, 0, 0.4);
-				glRotated(-75, 0, 1, 0);
-				glRotated(-30, 1, 0, 0);
+				glRotated(VAL(LEFT_ANTENNA_ROTATE_Y), 0, 1, 0); // -75
+				glRotated(VAL(LEFT_ANTENNA_ROTATE_X), 1, 0, 0); // -30
 				drawCylinder(1, 0.1, 0.1);
 	
 				glPushMatrix();
 					glTranslated(0, 0, 1);
-					glRotated(-30, 0, 1, 0);
-					glRotated(45, 1, 0, 0);
+					glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0); // -30
+					glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0); // 45
 					drawCylinder(0.7, 0.1, 0);
 				glPopMatrix();
 			glPopMatrix();
@@ -91,14 +91,14 @@ void SampleModel::draw()
 			// right antenna
 			glPushMatrix();
 				glTranslated(-0.3, 0, -0.4);
-				glRotated(-105, 0, 1, 0);
-				glRotated(-30, 1, 0, 0);
+				glRotated(VAL(RIGHT_ANTENNA_ROTATE_Y), 0, 1, 0);
+				glRotated(VAL(RIGHT_ANTENNA_ROTATE_X), 1, 0, 0);
 				drawCylinder(1, 0.1, 0.1);
 	
 				glPushMatrix();
 					glTranslated(0, 0, 1);
-					glRotated(30, 0, 1, 0);
-					glRotated(45, 1, 0, 0);
+					glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0);
+					glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0);
 					drawCylinder(0.7, 0.1, 0);
 				glPopMatrix();
 			glPopMatrix();
@@ -113,20 +113,20 @@ void SampleModel::draw()
 
 				// left 1
 				glPushMatrix();
-					glRotated(-60, 0, 1, 0);
-					glRotated(-30, 1, 0, 0);
+					glRotated(VAL(LEFT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
+					glRotated(VAL(LEFT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 2);
-						glRotated(-40, 0, 1, 0);
-						glRotated(50, 1, 0, 0);
+						glRotated(VAL(LEFT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
+						glRotated(VAL(LEFT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 2);
-							glRotated(-20, 0, 1, 0);
-							glRotated(20, 1, 0, 0);
+							glRotated(VAL(LEFT_LEG_1_3_ROTATE_Y), 0, 1, 0); // -20
+							glRotated(VAL(LEFT_LEG_1_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -134,20 +134,20 @@ void SampleModel::draw()
 	
 				// left 2
 				glPushMatrix();
-					glRotated(-30, 0, 1, 0);
-					glRotated(-25, 1, 0, 0);
+					glRotated(VAL(LEFT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
+					glRotated(VAL(LEFT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 1.5);
-						glRotated(-30, 0, 1, 0);
-						glRotated(40, 1, 0, 0);
+						glRotated(VAL(LEFT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
+						glRotated(VAL(LEFT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 1.5);
-							glRotated(-20, 0, 1, 0);
-							glRotated(30, 1, 0, 0);
+							glRotated(VAL(LEFT_LEG_2_3_ROTATE_Y), 0, 1, 0); // -20
+							glRotated(VAL(LEFT_LEG_2_3_ROTATE_X), 1, 0, 0); // 30
 							drawCylinder(1.5, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -155,20 +155,20 @@ void SampleModel::draw()
 	
 				// left 3
 				glPushMatrix();
-					glRotated(20, 0, 1, 0);
-					glRotated(-30, 1, 0, 0);
+					glRotated(VAL(LEFT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
+					glRotated(VAL(LEFT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 1.5);
-						glRotated(20, 0, 1, 0);
-						glRotated(50, 1, 0, 0);
+						glRotated(VAL(LEFT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
+						glRotated(VAL(LEFT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 1.5);
-							glRotated(20, 0, 1, 0);
-							glRotated(40, 1, 0, 0);
+							glRotated(VAL(LEFT_LEG_3_3_ROTATE_Y), 0, 1, 0); // 20
+							glRotated(VAL(LEFT_LEG_3_3_ROTATE_X), 1, 0, 0); // 40
 							drawCylinder(1.5, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -176,20 +176,20 @@ void SampleModel::draw()
 				
 				// left 4
 				glPushMatrix();
-					glRotated(60, 0, 1, 0);
-					glRotated(-20, 1, 0, 0);
+					glRotated(VAL(LEFT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
+					glRotated(VAL(LEFT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 2);
-						glRotated(20, 0, 1, 0);
-						glRotated(40, 1, 0, 0);
+						glRotated(VAL(LEFT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
+						glRotated(VAL(LEFT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 2);
-							glRotated(20, 0, 1, 0);
-							glRotated(20, 1, 0, 0);
+							glRotated(VAL(LEFT_LEG_4_3_ROTATE_Y), 0, 1, 0); // 20
+							glRotated(VAL(LEFT_LEG_4_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -203,20 +203,20 @@ void SampleModel::draw()
 
 				// right 1
 				glPushMatrix();
-					glRotated(-120, 0, 1, 0);
-					glRotated(-30, 1, 0, 0);
+					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
+					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 2);
-						glRotated(40, 0, 1, 0);
-						glRotated(50, 1, 0, 0);
+						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
+						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 2);
-							glRotated(20, 0, 1, 0);
-							glRotated(20, 1, 0, 0);
+							glRotated(VAL(RIGHT_LEG_1_3_ROTATE_Y), 0, 1, 0); // -20
+							glRotated(VAL(RIGHT_LEG_1_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -224,20 +224,20 @@ void SampleModel::draw()
 	
 				// right 2
 				glPushMatrix();
-					glRotated(-150, 0, 1, 0);
-					glRotated(-25, 1, 0, 0);
+					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
+					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 1.5);
-						glRotated(30, 0, 1, 0);
-						glRotated(40, 1, 0, 0);
+						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
+						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 1.5);
-							glRotated(20, 0, 1, 0);
-							glRotated(30, 1, 0, 0);
+							glRotated(VAL(RIGHT_LEG_2_3_ROTATE_Y), 0, 1, 0); // -20
+							glRotated(VAL(RIGHT_LEG_2_3_ROTATE_X), 1, 0, 0); // 30
 							drawCylinder(1.5, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -245,20 +245,20 @@ void SampleModel::draw()
 	
 				// right 3
 				glPushMatrix();
-					glRotated(160, 0, 1, 0);
-					glRotated(-30, 1, 0, 0);
+					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
+					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 1.5);
-						glRotated(-20, 0, 1, 0);
-						glRotated(50, 1, 0, 0);
+						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
+						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 1.5);
-							glRotated(-20, 0, 1, 0);
-							glRotated(40, 1, 0, 0);
+							glRotated(VAL(RIGHT_LEG_3_3_ROTATE_Y), 0, 1, 0); // 20
+							glRotated(VAL(RIGHT_LEG_3_3_ROTATE_X), 1, 0, 0); // 40
 							drawCylinder(1.5, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -266,20 +266,20 @@ void SampleModel::draw()
 				
 				// right 4
 				glPushMatrix();
-					glRotated(120, 0, 1, 0);
-					glRotated(-20, 1, 0, 0);
+					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
+					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
 	
 					glPushMatrix();
 						glTranslated(0, 0, 2);
-						glRotated(-20, 0, 1, 0);
-						glRotated(40, 1, 0, 0);
+						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
+						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
 	
 						glPushMatrix();
 							glTranslated(0, 0, 2);
-							glRotated(-20, 0, 1, 0);
-							glRotated(20, 1, 0, 0);
+							glRotated(VAL(RIGHT_LEG_4_3_ROTATE_Y), 0, 1, 0); // 20
+							glRotated(VAL(RIGHT_LEG_4_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
 						glPopMatrix();
 					glPopMatrix();
@@ -297,7 +297,8 @@ void SampleModel::draw()
 			// spinneret
 			glPushMatrix();
 				glTranslated(1.1, 0, 0);
-				glRotated(90, 0, 1, 0);
+				glRotated(VAL(SPINNERET_ROTATE_Y), 0, 1, 0); // 90
+				glRotated(VAL(SPINNERET_ROTATE_X), 1, 0, 0); // 0
 				drawCylinder(0.3, 0.2, 0);
 			glPopMatrix();
 		glPopMatrix();
@@ -314,8 +315,78 @@ int main()
     controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
+
     controls[LEFT_TOOTH_ROTATE_Y] = ModelerControl("Left Tooth Rotate Y", -60, -120, 1, -90);
     controls[RIGHT_TOOTH_ROTATE_Y] = ModelerControl("Right Tooth Rotate Y", -60, -120, 1, -90);
+
+    controls[LEFT_ANTENNA_ROTATE_Y] = ModelerControl("Left Antenna Rotate Y", -60, -90, 1, -75);
+    controls[LEFT_ANTENNA_ROTATE_X] = ModelerControl("Left Antenna Rotate X", -0, -60, 1, -30);
+    controls[LEFT_ANTENNA_UPPER_ROTATE_Y] = ModelerControl("Left Antenna Upper Rotate Y", -0, -60, 1, -30);
+    controls[LEFT_ANTENNA_UPPER_ROTATE_X] = ModelerControl("Right Antenna Upper Rotate X", 30, 60, 1, 45);
+
+    controls[RIGHT_ANTENNA_ROTATE_Y] = ModelerControl("Right Antenna Rotate Y", -90, -120, 1, -105);
+    controls[RIGHT_ANTENNA_ROTATE_X] = ModelerControl("Right Antenna Rotate X", -0, -60, 1, -30);
+    controls[RIGHT_ANTENNA_UPPER_ROTATE_Y] = ModelerControl("Right Antenna Upper Rotate Y", 0, 60, 1, 30);
+    controls[RIGHT_ANTENNA_UPPER_ROTATE_X] = ModelerControl("Right Antenna Upper Rotate X", 30, 60, 1, 45);
+
+    controls[LEFT_LEG_1_1_ROTATE_Y] = ModelerControl("Left Leg 1 First Part Rotate Y", -30, -90, 1, -60);
+    controls[LEFT_LEG_1_1_ROTATE_X] = ModelerControl("Left Leg 1 First Part Rotate X", -0, -60, 1, -30);
+    controls[LEFT_LEG_1_2_ROTATE_Y] = ModelerControl("Left Leg 1 Second Part Rotate Y", -10, -70, 1, -40);
+    controls[LEFT_LEG_1_2_ROTATE_X] = ModelerControl("Left Leg 1 Second Part Rotate X", 20, 80, 1, 50);
+    controls[LEFT_LEG_1_3_ROTATE_Y] = ModelerControl("Left Leg 1 Third Part Rotate Y", 10, -50, 1, -20);
+    controls[LEFT_LEG_1_3_ROTATE_X] = ModelerControl("Left Leg 1 Third Part Rotate X", -10, 50, 1, 20);
+
+    controls[LEFT_LEG_2_1_ROTATE_Y] = ModelerControl("Left Leg 2 First Part Rotate Y", -0, -60, 1, -30);
+    controls[LEFT_LEG_2_1_ROTATE_X] = ModelerControl("Left Leg 2 First Part Rotate X", 5, -55, 1, -25);
+    controls[LEFT_LEG_2_2_ROTATE_Y] = ModelerControl("Left Leg 2 Second Part Rotate Y", -0, -60, 1, -30);
+    controls[LEFT_LEG_2_2_ROTATE_X] = ModelerControl("Left Leg 2 Second Part Rotate X", 10, 70, 1, 40);
+    controls[LEFT_LEG_2_3_ROTATE_Y] = ModelerControl("Left Leg 2 Third Part Rotate Y", 10, -50, 1, -20);
+    controls[LEFT_LEG_2_3_ROTATE_X] = ModelerControl("Left Leg 2 Third Part Rotate X", 0, 60, 1, 30);
+
+    controls[LEFT_LEG_3_1_ROTATE_Y] = ModelerControl("Left Leg 3 First Part Rotate Y", -10, 50, 1, 20);
+    controls[LEFT_LEG_3_1_ROTATE_X] = ModelerControl("Left Leg 3 First Part Rotate X", 0, -60, 1, -30);
+    controls[LEFT_LEG_3_2_ROTATE_Y] = ModelerControl("Left Leg 3 Second Part Rotate Y", -10, 50, 1, 20);
+    controls[LEFT_LEG_3_2_ROTATE_X] = ModelerControl("Left Leg 3 Second Part Rotate X", 20, 80, 1, 50);
+    controls[LEFT_LEG_3_3_ROTATE_Y] = ModelerControl("Left Leg 3 Third Part Rotate Y", -10, 50, 1, 20);
+    controls[LEFT_LEG_3_3_ROTATE_X] = ModelerControl("Left Leg 3 Third Part Rotate X", 10, 70, 1, 40);
+
+    controls[LEFT_LEG_4_1_ROTATE_Y] = ModelerControl("Left Leg 4 First Part Rotate Y", 30, 90, 1, 60);
+    controls[LEFT_LEG_4_1_ROTATE_X] = ModelerControl("Left Leg 4 First Part Rotate X", 10, -50, 1, -20);
+    controls[LEFT_LEG_4_2_ROTATE_Y] = ModelerControl("Left Leg 4 Second Part Rotate Y", -10, 50, 1, 20);
+    controls[LEFT_LEG_4_2_ROTATE_X] = ModelerControl("Left Leg 4 Second Part Rotate X", 10, 70, 1, 40);
+    controls[LEFT_LEG_4_3_ROTATE_Y] = ModelerControl("Left Leg 4 Third Part Rotate Y", -10, 50, 1, 20);
+    controls[LEFT_LEG_4_3_ROTATE_X] = ModelerControl("Left Leg 4 Third Part Rotate X", -10, 50, 1, 20);
+
+    controls[RIGHT_LEG_1_1_ROTATE_Y] = ModelerControl("Right Leg 1 First Part Rotate Y", -90, -150, 1, -120);
+    controls[RIGHT_LEG_1_1_ROTATE_X] = ModelerControl("Right Leg 1 First Part Rotate X", 0, -60, 1, -30);
+    controls[RIGHT_LEG_1_2_ROTATE_Y] = ModelerControl("Right Leg 1 Second Part Rotate Y", 10, 70, 1, 40);
+    controls[RIGHT_LEG_1_2_ROTATE_X] = ModelerControl("Right Leg 1 Second Part Rotate X", 20, 80, 1, 50);
+    controls[RIGHT_LEG_1_3_ROTATE_Y] = ModelerControl("Right Leg 1 Third Part Rotate Y", -10, 50, 1, 20);
+    controls[RIGHT_LEG_1_3_ROTATE_X] = ModelerControl("Right Leg 1 Third Part Rotate X", -10, 50, 1, 20);
+
+    controls[RIGHT_LEG_2_1_ROTATE_Y] = ModelerControl("Right Leg 2 First Part Rotate Y", -120, -180, 1, -150);
+    controls[RIGHT_LEG_2_1_ROTATE_X] = ModelerControl("Right Leg 2 First Part Rotate X", 5, -55, 1, -25);
+    controls[RIGHT_LEG_2_2_ROTATE_Y] = ModelerControl("Right Leg 2 Second Part Rotate Y", 0, 60, 1, 30);
+    controls[RIGHT_LEG_2_2_ROTATE_X] = ModelerControl("Right Leg 2 Second Part Rotate X", 10, 70, 1, 40);
+    controls[RIGHT_LEG_2_3_ROTATE_Y] = ModelerControl("Right Leg 2 Third Part Rotate Y", -10, 50, 1, 20);
+    controls[RIGHT_LEG_2_3_ROTATE_X] = ModelerControl("Right Leg 2 Third Part Rotate X", 0, 60, 1, 30);
+
+    controls[RIGHT_LEG_3_1_ROTATE_Y] = ModelerControl("Right Leg 3 First Part Rotate Y", 120, 190, 1, 160);
+    controls[RIGHT_LEG_3_1_ROTATE_X] = ModelerControl("Right Leg 3 First Part Rotate X", 0, -60, 1, -30);
+    controls[RIGHT_LEG_3_2_ROTATE_Y] = ModelerControl("Right Leg 3 Second Part Rotate Y", 10, -50, 1, -20);
+    controls[RIGHT_LEG_3_2_ROTATE_X] = ModelerControl("Right Leg 3 Second Part Rotate X", 20, 80, 1, 50);
+    controls[RIGHT_LEG_3_3_ROTATE_Y] = ModelerControl("Right Leg 3 Third Part Rotate Y", 10, -50, 1, -20);
+    controls[RIGHT_LEG_3_3_ROTATE_X] = ModelerControl("Right Leg 3 Third Part Rotate X", 10, 70, 1, 40);
+
+    controls[RIGHT_LEG_4_1_ROTATE_Y] = ModelerControl("Right Leg 4 First Part Rotate Y", 90, 150, 1, 120);
+    controls[RIGHT_LEG_4_1_ROTATE_X] = ModelerControl("Right Leg 4 First Part Rotate X", 10, -50, 1, -20);
+    controls[RIGHT_LEG_4_2_ROTATE_Y] = ModelerControl("Right Leg 4 Second Part Rotate Y", 10, -50, 1, -20);
+    controls[RIGHT_LEG_4_2_ROTATE_X] = ModelerControl("Right Leg 4 Second Part Rotate X", 10, 70, 1, 40);
+    controls[RIGHT_LEG_4_3_ROTATE_Y] = ModelerControl("Right Leg 4 Third Part Rotate Y", 10, -50, 1, -20);
+    controls[RIGHT_LEG_4_3_ROTATE_X] = ModelerControl("Right Leg 4 Third Part Rotate X", -10, 50, 1, 20);
+
+    controls[SPINNERET_ROTATE_Y] = ModelerControl("Spinneret Rotate Y", 75, 105, 1, 90);
+    controls[SPINNERET_ROTATE_X] = ModelerControl("Spinneret Rotate Y", -15, 15, 1, 0);
 
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
     return ModelerApplication::Instance()->Run();
