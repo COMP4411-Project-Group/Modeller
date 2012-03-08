@@ -7,6 +7,8 @@
 
 #include "modelerglobals.h"
 
+int currMood = 0;
+
 // To make a SampleModel, we inherit off of ModelerView
 class SampleModel : public ModelerView 
 {
@@ -24,6 +26,207 @@ ModelerView* createSampleModel(int x, int y, int w, int h, char *label)
     return new SampleModel(x,y,w,h,label); 
 }
 
+void animate() {
+	SETVAL(XPOS, VAL(XPOS) + 1);
+}
+
+void restoreMood() {
+	SETVAL(XPOS, 0);
+	SETVAL(YPOS, 0);
+	SETVAL(ZPOS, 0);
+
+	SETVAL(SPIDER_ROTATE_Z, 0);
+	SETVAL(BODY_ROTATE_Z, 0);
+
+	SETVAL(LEFT_TOOTH_ROTATE_Y, -90);
+	SETVAL(RIGHT_TOOTH_ROTATE_Y, -90);
+
+	SETVAL(LEFT_ANTENNA_ROTATE_Y, -75);
+	SETVAL(LEFT_ANTENNA_ROTATE_X, -30);
+	SETVAL(LEFT_ANTENNA_UPPER_ROTATE_Y, -30);
+	SETVAL(LEFT_ANTENNA_UPPER_ROTATE_X, 45);
+	SETVAL(RIGHT_ANTENNA_ROTATE_Y, -105);
+	SETVAL(RIGHT_ANTENNA_ROTATE_X, -30);
+	SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_Y, 30);
+	SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_X, 45);
+
+	SETVAL(LEFT_LEG_1_1_ROTATE_Y, -60);
+	SETVAL(LEFT_LEG_1_1_ROTATE_X, -30);
+	SETVAL(LEFT_LEG_1_2_ROTATE_Y, -40);
+	SETVAL(LEFT_LEG_1_2_ROTATE_X, 50);
+	SETVAL(LEFT_LEG_1_3_ROTATE_Y, -20);
+	SETVAL(LEFT_LEG_1_3_ROTATE_X, 20);
+
+	SETVAL(LEFT_LEG_2_1_ROTATE_Y, -30);
+	SETVAL(LEFT_LEG_2_1_ROTATE_X, -25);
+	SETVAL(LEFT_LEG_2_2_ROTATE_Y, -30);
+	SETVAL(LEFT_LEG_2_2_ROTATE_X, 40);
+	SETVAL(LEFT_LEG_2_3_ROTATE_Y, -20);
+	SETVAL(LEFT_LEG_2_3_ROTATE_X, 30);
+
+	SETVAL(LEFT_LEG_3_1_ROTATE_Y, 20);
+	SETVAL(LEFT_LEG_3_1_ROTATE_X, -30);
+	SETVAL(LEFT_LEG_3_2_ROTATE_Y, 20);
+	SETVAL(LEFT_LEG_3_2_ROTATE_X, 50);
+	SETVAL(LEFT_LEG_3_3_ROTATE_Y, 20);
+	SETVAL(LEFT_LEG_3_3_ROTATE_X, 40);
+
+	SETVAL(LEFT_LEG_4_1_ROTATE_Y, 60);
+	SETVAL(LEFT_LEG_4_1_ROTATE_X, -20);
+	SETVAL(LEFT_LEG_4_2_ROTATE_Y, 20);
+	SETVAL(LEFT_LEG_4_2_ROTATE_X, 40);
+	SETVAL(LEFT_LEG_4_3_ROTATE_Y, 20);
+	SETVAL(LEFT_LEG_4_3_ROTATE_X, 20);
+
+	SETVAL(RIGHT_LEG_1_1_ROTATE_Y, -120);
+	SETVAL(RIGHT_LEG_1_1_ROTATE_X, -30);
+	SETVAL(RIGHT_LEG_1_2_ROTATE_Y, 40);
+	SETVAL(RIGHT_LEG_1_2_ROTATE_X, 50);
+	SETVAL(RIGHT_LEG_1_3_ROTATE_Y, 20);
+	SETVAL(RIGHT_LEG_1_3_ROTATE_X, 20);
+
+	SETVAL(RIGHT_LEG_2_1_ROTATE_Y, -150);
+	SETVAL(RIGHT_LEG_2_1_ROTATE_X, -25);
+	SETVAL(RIGHT_LEG_2_2_ROTATE_Y, 30);
+	SETVAL(RIGHT_LEG_2_2_ROTATE_X, 40);
+	SETVAL(RIGHT_LEG_2_3_ROTATE_Y, 20);
+	SETVAL(RIGHT_LEG_2_3_ROTATE_X, 30);
+
+	SETVAL(RIGHT_LEG_3_1_ROTATE_Y, 160);
+	SETVAL(RIGHT_LEG_3_1_ROTATE_X, -30);
+	SETVAL(RIGHT_LEG_3_2_ROTATE_Y, -20);
+	SETVAL(RIGHT_LEG_3_2_ROTATE_X, 50);
+	SETVAL(RIGHT_LEG_3_3_ROTATE_Y, -20);
+	SETVAL(RIGHT_LEG_3_3_ROTATE_X, 40);
+
+	SETVAL(RIGHT_LEG_4_1_ROTATE_Y, 120);
+	SETVAL(RIGHT_LEG_4_1_ROTATE_X, -20);
+	SETVAL(RIGHT_LEG_4_2_ROTATE_Y, -20);
+	SETVAL(RIGHT_LEG_4_2_ROTATE_X, 40);
+	SETVAL(RIGHT_LEG_4_3_ROTATE_Y, -20);
+	SETVAL(RIGHT_LEG_4_3_ROTATE_X, 20);
+
+	SETVAL(SPINNERET_ROTATE_Y, 90);
+	SETVAL(SPINNERET_ROTATE_X, 0);
+}
+
+void setMood() {
+	if (VAL(MOOD) != 0) {
+		restoreMood();
+		if (VAL(MOOD) == 2) { // attack
+			SETVAL(YPOS, 0.8f);
+			SETVAL(BODY_ROTATE_Z, -40);
+
+			SETVAL(LEFT_ANTENNA_ROTATE_Y, -90);
+			SETVAL(LEFT_ANTENNA_ROTATE_X, 0);
+			SETVAL(LEFT_ANTENNA_UPPER_ROTATE_Y, 0);
+			SETVAL(LEFT_ANTENNA_UPPER_ROTATE_X, 60);
+
+			SETVAL(RIGHT_ANTENNA_ROTATE_Y, -90);
+			SETVAL(RIGHT_ANTENNA_ROTATE_X, 0);
+			SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_Y, 0);
+			SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_X, 60);
+
+			SETVAL(LEFT_LEG_1_1_ROTATE_Y, -60);
+			SETVAL(LEFT_LEG_1_1_ROTATE_X, -60);
+			SETVAL(LEFT_LEG_1_2_ROTATE_Y, -40);
+			SETVAL(LEFT_LEG_1_2_ROTATE_X, 50);
+			SETVAL(LEFT_LEG_1_3_ROTATE_Y, -50);
+			SETVAL(LEFT_LEG_1_3_ROTATE_X, 20);
+
+			SETVAL(LEFT_LEG_2_1_ROTATE_Y, 0);
+			SETVAL(LEFT_LEG_2_1_ROTATE_X, 5);
+			SETVAL(LEFT_LEG_2_2_ROTATE_Y, 0);
+			SETVAL(LEFT_LEG_2_2_ROTATE_X, 70);
+			SETVAL(LEFT_LEG_2_3_ROTATE_Y, -20);
+			SETVAL(LEFT_LEG_2_3_ROTATE_X, 0);
+
+			SETVAL(LEFT_LEG_3_1_ROTATE_Y, 40);
+			SETVAL(LEFT_LEG_3_1_ROTATE_X, -30);
+			SETVAL(LEFT_LEG_3_2_ROTATE_Y, -10);
+			SETVAL(LEFT_LEG_3_2_ROTATE_X, 50);
+			SETVAL(LEFT_LEG_3_3_ROTATE_Y, -10);
+			SETVAL(LEFT_LEG_3_3_ROTATE_X, 70);
+
+			SETVAL(LEFT_LEG_4_1_ROTATE_Y, 60);
+			SETVAL(LEFT_LEG_4_1_ROTATE_X, -50);
+			SETVAL(LEFT_LEG_4_2_ROTATE_Y, 20);
+			SETVAL(LEFT_LEG_4_2_ROTATE_X, 40);
+			SETVAL(LEFT_LEG_4_3_ROTATE_Y, -10);
+			SETVAL(LEFT_LEG_4_3_ROTATE_X, 50);
+
+			SETVAL(RIGHT_LEG_1_1_ROTATE_Y, -120);
+			SETVAL(RIGHT_LEG_1_1_ROTATE_X, -60);
+			SETVAL(RIGHT_LEG_1_2_ROTATE_Y, 40);
+			SETVAL(RIGHT_LEG_1_2_ROTATE_X, 50);
+			SETVAL(RIGHT_LEG_1_3_ROTATE_Y, 20);
+			SETVAL(RIGHT_LEG_1_3_ROTATE_X, 50);
+
+			SETVAL(RIGHT_LEG_2_1_ROTATE_Y, -180);
+			SETVAL(RIGHT_LEG_2_1_ROTATE_X, 5);
+			SETVAL(RIGHT_LEG_2_2_ROTATE_Y, 0);
+			SETVAL(RIGHT_LEG_2_2_ROTATE_X, 70);
+			SETVAL(RIGHT_LEG_2_3_ROTATE_Y, 20);
+			SETVAL(RIGHT_LEG_2_3_ROTATE_X, 0);
+
+			SETVAL(RIGHT_LEG_3_1_ROTATE_Y, 140);
+			SETVAL(RIGHT_LEG_3_1_ROTATE_X, -30);
+			SETVAL(RIGHT_LEG_3_2_ROTATE_Y, 10);
+			SETVAL(RIGHT_LEG_3_2_ROTATE_X, 50);
+			SETVAL(RIGHT_LEG_3_3_ROTATE_Y, 10);
+			SETVAL(RIGHT_LEG_3_3_ROTATE_X, 70);
+
+			SETVAL(RIGHT_LEG_4_1_ROTATE_Y, 120);
+			SETVAL(RIGHT_LEG_4_1_ROTATE_X, -50);
+			SETVAL(RIGHT_LEG_4_2_ROTATE_Y, -20);
+			SETVAL(RIGHT_LEG_4_2_ROTATE_X, 40);
+			SETVAL(RIGHT_LEG_4_3_ROTATE_Y, 10);
+			SETVAL(RIGHT_LEG_4_3_ROTATE_X, 50);
+
+			SETVAL(SPINNERET_ROTATE_Y, -15);
+		} else if (VAL(MOOD) == 3) { // dead
+			SETVAL(SPIDER_ROTATE_Z, -180);
+	
+			SETVAL(LEFT_ANTENNA_ROTATE_X, 0);
+			SETVAL(LEFT_ANTENNA_UPPER_ROTATE_X, 60);
+			SETVAL(RIGHT_ANTENNA_ROTATE_X, 0);
+			SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_X, 60);
+	
+			SETVAL(LEFT_LEG_1_1_ROTATE_X, 0);
+			SETVAL(LEFT_LEG_1_2_ROTATE_X, 80);
+			SETVAL(LEFT_LEG_1_3_ROTATE_X, 50);
+	
+			SETVAL(LEFT_LEG_2_1_ROTATE_X, 5);
+			SETVAL(LEFT_LEG_2_2_ROTATE_X, 70);
+			SETVAL(LEFT_LEG_2_3_ROTATE_X, 60);
+	
+			SETVAL(LEFT_LEG_3_1_ROTATE_X, 0);
+			SETVAL(LEFT_LEG_3_2_ROTATE_X, 80);
+			SETVAL(LEFT_LEG_3_3_ROTATE_X, 70);
+	
+			SETVAL(LEFT_LEG_4_1_ROTATE_X, 10);
+			SETVAL(LEFT_LEG_4_2_ROTATE_X, 70);
+			SETVAL(LEFT_LEG_4_3_ROTATE_X, 50);
+	
+			SETVAL(RIGHT_LEG_1_1_ROTATE_X, 0);
+			SETVAL(RIGHT_LEG_1_2_ROTATE_X, 80);
+			SETVAL(RIGHT_LEG_1_3_ROTATE_X, 50);
+	
+			SETVAL(RIGHT_LEG_2_1_ROTATE_X, 5);
+			SETVAL(RIGHT_LEG_2_2_ROTATE_X, 70);
+			SETVAL(RIGHT_LEG_2_3_ROTATE_X, 60);
+	
+			SETVAL(RIGHT_LEG_3_1_ROTATE_X, 0);
+			SETVAL(RIGHT_LEG_3_2_ROTATE_X, 80);
+			SETVAL(RIGHT_LEG_3_3_ROTATE_X, 70);
+	
+			SETVAL(RIGHT_LEG_4_1_ROTATE_X, 10);
+			SETVAL(RIGHT_LEG_4_2_ROTATE_X, 70);
+			SETVAL(RIGHT_LEG_4_3_ROTATE_X, 50);
+		}
+	}
+}
+
 // We are going to override (is that the right word?) the draw()
 // method of ModelerView to draw out SampleModel
 void SampleModel::draw()
@@ -35,21 +238,33 @@ void SampleModel::draw()
 
 	// draw the floor
 	setAmbientColor(.1f,.1f,.1f);
-	setDiffuseColor(COLOR_GREEN);
+	setDiffuseColor(1, 1, 1);
 
 	glPushMatrix();
 	glTranslated(-5,0,-5);
-	drawBox(10,0.01f,10);
+	// drawBox(10,0.01f,10);
+	drawWeb(9, 15);
 	glPopMatrix();
 
 	setDiffuseColor(0.2f, 0.1f, 0.1f);
 
 	#define DETAIL (VAL(LEVEL_OF_DETAIL))
 
+	if (currMood != VAL(MOOD)) {
+		setMood();
+		currMood = VAL(MOOD);
+	}
+
+	if (VAL(ANIMATE)) {
+		animate();
+	}
+
 	// whole
 	glPushMatrix();
 	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 	glTranslated(0, 1, 0);
+	glRotated(VAL(SPIDER_ROTATE_Z), 0, 0, 1);
+
 
 	if (DETAIL >= 1) {
 		// belly
@@ -78,7 +293,7 @@ void SampleModel::draw()
 			glRotated(VAL(BODY_ROTATE_Z), 0, 0, 1);
 				glPushMatrix();
 				glScaled(1.3, 1, 1);
-				drawSphere(0.7);
+				drawSphere(0.5);
 				glPopMatrix();
 			// legs
 			if (DETAIL >= 3) {
@@ -299,7 +514,6 @@ void SampleModel::draw()
 
 				glPopMatrix();
 			}
-			glPopMatrix();
 	
 			if (DETAIL >= 3) {
 				// head
@@ -357,6 +571,7 @@ void SampleModel::draw()
 				}
 				glPopMatrix();
 			}
+			glPopMatrix();
 		}
 	}
 
@@ -370,10 +585,13 @@ int main()
 	// stepsize, defaultvalue)
     ModelerControl controls[NUMCONTROLS];
 	controls[LEVEL_OF_DETAIL] = ModelerControl("Level of Detail", 1, 6, 1, 6);
+	controls[MOOD] = ModelerControl("Mood", 0, 3, 1, 0);
+	controls[ANIMATE] = ModelerControl("Animate", 0, 1, 1, 0);
     controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
 
+	controls[SPIDER_ROTATE_Z] = ModelerControl("Spider Rotate Z", -180, 180, 1, 0);
 	controls[BODY_ROTATE_Z] = ModelerControl("Body Rotate Z", 30, -60, 1, 0);
 
     controls[LEFT_TOOTH_ROTATE_Y] = ModelerControl("Left Tooth Rotate Y", -60, -120, 1, -90);
@@ -382,7 +600,7 @@ int main()
     controls[LEFT_ANTENNA_ROTATE_Y] = ModelerControl("Left Antenna Rotate Y", -60, -90, 1, -75);
     controls[LEFT_ANTENNA_ROTATE_X] = ModelerControl("Left Antenna Rotate X", -0, -60, 1, -30);
     controls[LEFT_ANTENNA_UPPER_ROTATE_Y] = ModelerControl("Left Antenna Upper Rotate Y", -0, -60, 1, -30);
-    controls[LEFT_ANTENNA_UPPER_ROTATE_X] = ModelerControl("Right Antenna Upper Rotate X", 30, 60, 1, 45);
+    controls[LEFT_ANTENNA_UPPER_ROTATE_X] = ModelerControl("Left Antenna Upper Rotate X", 30, 60, 1, 45);
 
     controls[RIGHT_ANTENNA_ROTATE_Y] = ModelerControl("Right Antenna Rotate Y", -90, -120, 1, -105);
     controls[RIGHT_ANTENNA_ROTATE_X] = ModelerControl("Right Antenna Rotate X", -0, -60, 1, -30);
@@ -431,7 +649,7 @@ int main()
     controls[RIGHT_LEG_2_3_ROTATE_Y] = ModelerControl("Right Leg 2 Third Part Rotate Y", -10, 50, 1, 20);
     controls[RIGHT_LEG_2_3_ROTATE_X] = ModelerControl("Right Leg 2 Third Part Rotate X", 0, 60, 1, 30);
 
-    controls[RIGHT_LEG_3_1_ROTATE_Y] = ModelerControl("Right Leg 3 First Part Rotate Y", 120, 190, 1, 160);
+    controls[RIGHT_LEG_3_1_ROTATE_Y] = ModelerControl("Right Leg 3 First Part Rotate Y", 130, 190, 1, 160);
     controls[RIGHT_LEG_3_1_ROTATE_X] = ModelerControl("Right Leg 3 First Part Rotate X", 0, -60, 1, -30);
     controls[RIGHT_LEG_3_2_ROTATE_Y] = ModelerControl("Right Leg 3 Second Part Rotate Y", 10, -50, 1, -20);
     controls[RIGHT_LEG_3_2_ROTATE_X] = ModelerControl("Right Leg 3 Second Part Rotate X", 20, 80, 1, 50);

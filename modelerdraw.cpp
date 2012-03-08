@@ -232,6 +232,71 @@ void drawSphere(double r)
     }
 }
 
+void drawWeb( int numOfAngles, int size ) {
+    ModelerDrawState *mds = ModelerDrawState::Instance();
+	_setupOpenGl();
+
+	if (mds->m_rayFile) {
+        _dump_current_modelview();
+        fprintf(mds->m_rayFile, "scale(%d,%d,web {\n", numOfAngles, size );
+        _dump_current_material();
+        fprintf(mds->m_rayFile, "}))\n" );
+    } else {
+		/* remember which matrix mode OpenGL was in. */
+        int savemode;
+        glGetIntegerv( GL_MATRIX_MODE, &savemode );
+        
+        /* switch to the model matrix and scale by x,y,z. */
+        glMatrixMode( GL_MODELVIEW );
+        glPushMatrix();
+		glTranslated(5, 0, 5);
+
+		for (int i = 0; i < numOfAngles; i++) {
+			glRotated(360 / numOfAngles, 0, 1, 0);
+			glBegin( GL_LINES );
+				glVertex3f(0, 0, 0);
+				glVertex3f(size, 0, 0);
+			glEnd();
+		}
+
+		glBegin( GL_LINES );
+			for (int i = 0; i < numOfAngles; i++) {
+				double radian1 = (360 / numOfAngles) / 57.3 * i;
+				double radian2 = (360 / numOfAngles) / 57.3 * (i + 1);
+				for (int j = 1; j < size - 3; j++) {
+					glVertex3f(cos(radian1) * j, 0, sin(radian1) * j);
+					glVertex3f(cos((4 * radian1 + 1 * radian2) / 5) * j * 0.9, - j * 0.03, 
+							sin((4 * radian1 + 1 * radian2) / 5) * j * 0.9);
+
+					glVertex3f(cos((4 * radian1 + 1 * radian2) / 5) * j * 0.9, - j * 0.03, 
+							sin((4 * radian1 + 1 * radian2) / 5) * j * 0.9);
+					glVertex3f(cos((3 * radian1 + 2 * radian2) / 5) * j * 0.85, - j * 0.05, 
+							sin((3 * radian1 + 2 * radian2) / 5) * j * 0.85);
+
+					glVertex3f(cos((3 * radian1 + 2 * radian2) / 5) * j * 0.85, - j * 0.05, 
+							sin((3 * radian1 + 2 * radian2) / 5) * j * 0.85);
+					glVertex3f(cos((2 * radian1 + 3 * radian2) / 5) * j * 0.85, - j * 0.05, 
+							sin((2 * radian1 + 3 * radian2) / 5) * j * 0.85);
+
+					glVertex3f(cos((2 * radian1 + 3 * radian2) / 5) * j * 0.85, - j * 0.05, 
+							sin((2 * radian1 + 3 * radian2) / 5) * j * 0.85);
+					glVertex3f(cos((1 * radian1 + 4 * radian2) / 5) * j * 0.9, - j * 0.03, 
+							sin((1 * radian1 + 4 * radian2) / 5) * j * 0.9);
+
+					glVertex3f(cos((1 * radian1 + 4 * radian2) / 5) * j * 0.9, - j * 0.03, 
+							sin((1 * radian1 + 4 * radian2) / 5) * j * 0.9);
+					glVertex3f(cos(radian2) * j, 0, sin(radian2) * j);
+				}
+			}
+		glEnd();
+
+        /* restore the model matrix stack, and switch back to the matrix
+        mode we were in. */
+        glPopMatrix();
+        glMatrixMode( savemode );
+    }
+}
+
 
 void drawBox( double x, double y, double z )
 {
