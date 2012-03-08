@@ -42,15 +42,63 @@ void SampleModel::draw()
 	drawBox(10,0.01f,10);
 	glPopMatrix();
 
-	setDiffuseColor(1.0f, 1.0f, 1.0f);
+	setDiffuseColor(0.6f, 0.4f, 0.2f);
 
+	// body
+	glPushMatrix();
+		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
+		glTranslated(0, 1, 0);
+		drawSphere(1);
+
+		// belly
+		glPushMatrix();
+			glScaled(1.3, 1, 1);
+			glTranslated(1.5, 0, 0);
+			drawSphere(1.2);
+		glPopMatrix();
+
+		// head
+		glPushMatrix();
+			glTranslated(-0.7, 0, 0);
+			drawSphere(0.5);
+
+			// left antenna
+			glPushMatrix();
+				glTranslated(-0.3, 0, 0.3);
+				glRotated(-105, 0, 1, 0);
+				drawCylinder(0.5, 0.1, 0.1);
+			glPopMatrix();
+			
+			// right antenna
+			glPushMatrix();
+				glTranslated(-0.3, 0, -0.3);
+				glRotated(-75, 0, 1, 0);
+				drawCylinder(0.5, 0.1, 0.1);
+			glPopMatrix();
+
+		glPopMatrix();
+
+		// legs
+		glPushMatrix();
+			glTranslated(0.5, 0, 0);
+
+			glPushMatrix();
+				glTranslated(0, 0, 0.5);
+				glRotated(-45, 0, 1, 0);
+				drawCylinder(2, 0.1, 0.1);
+			glPopMatrix();
+		glPopMatrix();
+
+	glPopMatrix();
+
+	/*
 	glTranslated(0, 0, 2);
 
 	// palm
 	glPushMatrix();
 		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
 		glTranslated(0, 1, 0);
-		// drawBox(2, 0.5, 1);
+		drawBox(2, 0.5, 1);
 
 		glTranslated(0, 0.25, 0);
 
@@ -174,6 +222,7 @@ void SampleModel::draw()
 		glPopMatrix();
 
 	glPopMatrix();
+	*/
 
 	/*
 	// draw the sample model
