@@ -42,266 +42,323 @@ void SampleModel::draw()
 	drawBox(10,0.01f,10);
 	glPopMatrix();
 
-	setDiffuseColor(0.6f, 0.4f, 0.2f);
+	setDiffuseColor(0.2f, 0.1f, 0.1f);
 
-	// body
+	#define DETAIL (VAL(LEVEL_OF_DETAIL))
+
+	// whole
 	glPushMatrix();
-		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
-		glTranslated(0, 1, 0);
+	glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
+	glTranslated(0, 1, 0);
+
+	if (DETAIL >= 1) {
+		// belly
 		glPushMatrix();
-			glScaled(1.3, 1, 1);
-			drawSphere(0.7);
+		glScaled(1.1, 0.7, 0.8);
+		glTranslated(1.5, 0, 0);
+		drawSphere(1.2);
+
+		// spinneret
+		if (DETAIL >= 2) {
+			glPushMatrix();
+			glTranslated(1.1, 0, 0);
+			glRotated(VAL(SPINNERET_ROTATE_Y), 0, 1, 0); // 90
+			glRotated(VAL(SPINNERET_ROTATE_X), 1, 0, 0); // 0
+			drawCylinder(0.3, 0.2, 0);
+			glPopMatrix();
+		}
 		glPopMatrix();
+	}
+	
 
-
-		// head part
-		glPushMatrix();
-			glTranslated(-0.6, 0, 0);
-			drawSphere(0.5);
-	
-			// left tooth
+	if (DETAIL >= 1) {
+		// body
+		if (DETAIL >= 2) {
 			glPushMatrix();
-				glTranslated(-0.3, 0, 0.2);
-				glRotated(VAL(LEFT_TOOTH_ROTATE_Y), 0, 1, 0);
-				drawCylinder(0.25, 0.25, 0.05);
-			glPopMatrix();
-	
-			// right tooth
-			glPushMatrix();
-				glTranslated(-0.3, 0, -0.2);
-				glRotated(VAL(RIGHT_TOOTH_ROTATE_Y), 0, 1, 0);
-				drawCylinder(0.25, 0.25, 0.05);
-			glPopMatrix();
-	
-			// left antenna
-			glPushMatrix();
-				glTranslated(-0.3, 0, 0.4);
-				glRotated(VAL(LEFT_ANTENNA_ROTATE_Y), 0, 1, 0); // -75
-				glRotated(VAL(LEFT_ANTENNA_ROTATE_X), 1, 0, 0); // -30
-				drawCylinder(1, 0.1, 0.1);
-	
+			glRotated(VAL(BODY_ROTATE_Z), 0, 0, 1);
 				glPushMatrix();
-					glTranslated(0, 0, 1);
-					glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0); // -30
-					glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0); // 45
-					drawCylinder(0.7, 0.1, 0);
+				glScaled(1.3, 1, 1);
+				drawSphere(0.7);
 				glPopMatrix();
-			glPopMatrix();
-			
-			// right antenna
-			glPushMatrix();
-				glTranslated(-0.3, 0, -0.4);
-				glRotated(VAL(RIGHT_ANTENNA_ROTATE_Y), 0, 1, 0);
-				glRotated(VAL(RIGHT_ANTENNA_ROTATE_X), 1, 0, 0);
-				drawCylinder(1, 0.1, 0.1);
+			// legs
+			if (DETAIL >= 3) {
+		
+				// left legs
+				glPushMatrix();
+				glTranslated(0, 0, 0.3);
 	
-				glPushMatrix();
-					glTranslated(0, 0, 1);
-					glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0);
-					glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0);
-					drawCylinder(0.7, 0.1, 0);
-				glPopMatrix();
-			glPopMatrix();
-		glPopMatrix();
-
-		// legs
-		glPushMatrix();
-
-			// left legs
-			glPushMatrix();
-			glTranslated(0, 0, 0.3);
-
-				// left 1
-				glPushMatrix();
+				if (DETAIL >= 4) {
+					// left 1
+					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
 					glRotated(VAL(LEFT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(LEFT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
 						glRotated(VAL(LEFT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 2);
 							glRotated(VAL(LEFT_LEG_1_3_ROTATE_Y), 0, 1, 0); // -20
 							glRotated(VAL(LEFT_LEG_1_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
 	
-				// left 2
-				glPushMatrix();
+					// left 2
+					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
 					glRotated(VAL(LEFT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(LEFT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
 						glRotated(VAL(LEFT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 1.5);
 							glRotated(VAL(LEFT_LEG_2_3_ROTATE_Y), 0, 1, 0); // -20
 							glRotated(VAL(LEFT_LEG_2_3_ROTATE_X), 1, 0, 0); // 30
 							drawCylinder(1.5, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
-	
-				// left 3
-				glPushMatrix();
+		
+					// left 3
+					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
 					glRotated(VAL(LEFT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(LEFT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(LEFT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 1.5);
 							glRotated(VAL(LEFT_LEG_3_3_ROTATE_Y), 0, 1, 0); // 20
 							glRotated(VAL(LEFT_LEG_3_3_ROTATE_X), 1, 0, 0); // 40
 							drawCylinder(1.5, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
-				
-				// left 4
-				glPushMatrix();
+					
+					// left 4
+					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
 					glRotated(VAL(LEFT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(LEFT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(LEFT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 2);
 							glRotated(VAL(LEFT_LEG_4_3_ROTATE_Y), 0, 1, 0); // 20
 							glRotated(VAL(LEFT_LEG_4_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
+				}
+	
 				glPopMatrix();
-
-			glPopMatrix();
-
-			// right legs
-			glPushMatrix();
-			glTranslated(0, 0, -0.3);
-
-				// right 1
+	
+				// right legs
 				glPushMatrix();
+				glTranslated(0, 0, -0.3);
+	
+				if (DETAIL >= 4) {
+					// right 1
+					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
 					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
 						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 2);
 							glRotated(VAL(RIGHT_LEG_1_3_ROTATE_Y), 0, 1, 0); // -20
 							glRotated(VAL(RIGHT_LEG_1_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
-	
-				// right 2
-				glPushMatrix();
+		
+					// right 2
+					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
 					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
 						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 1.5);
 							glRotated(VAL(RIGHT_LEG_2_3_ROTATE_Y), 0, 1, 0); // -20
 							glRotated(VAL(RIGHT_LEG_2_3_ROTATE_X), 1, 0, 0); // 30
 							drawCylinder(1.5, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
-	
-				// right 3
-				glPushMatrix();
+		
+					// right 3
+					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
 					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 1.5);
 							glRotated(VAL(RIGHT_LEG_3_3_ROTATE_Y), 0, 1, 0); // 20
 							glRotated(VAL(RIGHT_LEG_3_3_ROTATE_X), 1, 0, 0); // 40
 							drawCylinder(1.5, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
-				glPopMatrix();
-				
-				// right 4
-				glPushMatrix();
+					
+					// right 4
+					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
 					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
 	
-					glPushMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
 	
-						glPushMatrix();
+						if (DETAIL >= 6) {
+							glPushMatrix();
 							glTranslated(0, 0, 2);
 							glRotated(VAL(RIGHT_LEG_4_3_ROTATE_Y), 0, 1, 0); // 20
 							glRotated(VAL(RIGHT_LEG_4_3_ROTATE_X), 1, 0, 0); // 20
 							drawCylinder(2, 0.1, 0);
+							glPopMatrix();
+						}
 						glPopMatrix();
+					}
 					glPopMatrix();
+				}
+
 				glPopMatrix();
-
+			}
 			glPopMatrix();
-		glPopMatrix();
+	
+			if (DETAIL >= 3) {
+				// head
+				glPushMatrix();
+				glTranslated(-0.6, 0, 0);
+				drawSphere(0.5);
+				if (DETAIL >= 4) {
+					// left tooth
+					glPushMatrix();
+					glTranslated(-0.3, 0, 0.2);
+					glRotated(VAL(LEFT_TOOTH_ROTATE_Y), 0, 1, 0);
+					drawCylinder(0.25, 0.25, 0.05);
+					glPopMatrix();
+			
+					// right tooth
+					glPushMatrix();
+					glTranslated(-0.3, 0, -0.2);
+					glRotated(VAL(RIGHT_TOOTH_ROTATE_Y), 0, 1, 0);
+					drawCylinder(0.25, 0.25, 0.05);
+					glPopMatrix();
+			
+					// left antenna
+					glPushMatrix();
+					glTranslated(-0.3, 0, 0.4);
+					glRotated(VAL(LEFT_ANTENNA_ROTATE_Y), 0, 1, 0); // -75
+					glRotated(VAL(LEFT_ANTENNA_ROTATE_X), 1, 0, 0); // -30
+					drawCylinder(1, 0.1, 0.1);
 		
-		// belly
-		glPushMatrix();
-			glScaled(1.1, 0.7, 0.8);
-			glTranslated(1.5, 0, 0);
-			drawSphere(1.2);
-
-			// spinneret
-			glPushMatrix();
-				glTranslated(1.1, 0, 0);
-				glRotated(VAL(SPINNERET_ROTATE_Y), 0, 1, 0); // 90
-				glRotated(VAL(SPINNERET_ROTATE_X), 1, 0, 0); // 0
-				drawCylinder(0.3, 0.2, 0);
-			glPopMatrix();
-		glPopMatrix();
+					if (DETAIL >= 5) {
+						glPushMatrix();
+						glTranslated(0, 0, 1);
+						glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0); // -30
+						glRotated(VAL(LEFT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0); // 45
+						drawCylinder(0.7, 0.1, 0);
+						glPopMatrix();
+					}
+					glPopMatrix();
+					
+					// right antenna
+					glPushMatrix();
+					glTranslated(-0.3, 0, -0.4);
+					glRotated(VAL(RIGHT_ANTENNA_ROTATE_Y), 0, 1, 0);
+					glRotated(VAL(RIGHT_ANTENNA_ROTATE_X), 1, 0, 0);
+					drawCylinder(1, 0.1, 0.1);
+		
+					if (DETAIL >= 5) {
+						glPushMatrix();
+						glTranslated(0, 0, 1);
+						glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_Y), 0, 1, 0);
+						glRotated(VAL(RIGHT_ANTENNA_UPPER_ROTATE_X), 1, 0, 0);
+						drawCylinder(0.7, 0.1, 0);
+						glPopMatrix();
+					}
+					glPopMatrix();
+				}
+				glPopMatrix();
+			}
+		}
+	}
 
 	glPopMatrix();
 }
@@ -312,9 +369,12 @@ int main()
 	// Constructor is ModelerControl(name, minimumvalue, maximumvalue, 
 	// stepsize, defaultvalue)
     ModelerControl controls[NUMCONTROLS];
+	controls[LEVEL_OF_DETAIL] = ModelerControl("Level of Detail", 1, 6, 1, 6);
     controls[XPOS] = ModelerControl("X Position", -5, 5, 0.1f, 0);
     controls[YPOS] = ModelerControl("Y Position", 0, 5, 0.1f, 0);
     controls[ZPOS] = ModelerControl("Z Position", -5, 5, 0.1f, 0);
+
+	controls[BODY_ROTATE_Z] = ModelerControl("Body Rotate Z", 30, -60, 1, 0);
 
     controls[LEFT_TOOTH_ROTATE_Y] = ModelerControl("Left Tooth Rotate Y", -60, -120, 1, -90);
     controls[RIGHT_TOOTH_ROTATE_Y] = ModelerControl("Right Tooth Rotate Y", -60, -120, 1, -90);
