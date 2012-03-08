@@ -187,31 +187,46 @@ void Camera::applyViewingTransform() {
 				Vec3f(mLookAt[0],   mLookAt[1],   mLookAt[2]), 
 				Vec3f(mUpVector[0], mUpVector[1], mUpVector[2]));
 }
+/**
+ * eye: the position of the carema
+ * at: the point it is looking at
+ * up: The up vector in world coordiantes
+ */
 
 void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up) {
+	//The carema position
 	float eyex = eye[0];
 	float eyey = eye[1];
 	float eyez = eye[2];
 
+	//The looking point
 	float atx = at[0];
 	float aty = at[1];
 	float atz = at[2];
 	
+	//Up direction
 	float upx = up[0];
 	float upy = up[1];
 	float upz = up[2];
 	
+	//The view direction, which should be the new z vector
+	//The eyece should be in 
 	float vpnx = atx - eyex;
 	float vpny = aty - eyey;
 	float vpnz = atz - eyez;
 	
-	//Normalize it
+	//Normalize it to unit vector
 	float len = sqrt(vpnx * vpnx + vpny * vpny + vpnz * vpnz);
 	vpnx /= len;
 	vpny /= len;
 	vpnz /= len;
 	
-	//Calculate right vector
+	//Calculate right vector, it's basically the cross
+	//Product of the up axis(view direction), 
+	//And the view direction, becasue the new up vector must
+	//be parallel to the original up direction, to agree the 
+	//set up
+
 	float rvx = vpny * upz - vpnz * upy;
 	float rvy = vpnz * upx - vpnx * upz;
 	float rvz = vpnx * upy - vpny * upx;

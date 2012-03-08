@@ -1,5 +1,6 @@
 #include "modelerview.h"
 #include "camera.h"
+#include "bitmap.h"
 
 #include <FL/Fl.H>
 #include <FL/Fl_Gl_Window.h>
@@ -10,6 +11,34 @@
 static const int	kMouseRotationButton			= FL_LEFT_MOUSE;
 static const int	kMouseTranslationButton			= FL_MIDDLE_MOUSE;
 static const int	kMouseZoomButton				= FL_RIGHT_MOUSE;
+
+int initTexture() {
+	unsigned char* texture;
+	int texWidth;
+	int texHeight;
+	//load image from file
+	if((texture = readBMP("texture.bmp", texWidth, texHeight))==NULL) {
+		printf("Can't load bitmap!\n");
+		return 0;
+	}
+	printf("load success\n");
+	printf("textrue size %d, %d\n", texWidth, texHeight);
+	//Tell openGL to ignore padding at ends of rows
+	glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight,
+		0, GL_BGR_EXT, GL_UNSIGNED_BYTE,texture);
+	//Typical Texture Generation Using Data From Bitmapt
+	glEnable(GL_TEXTURE_2D);
+
+	return true;
+}
 
 ModelerView::ModelerView(int x, int y, int w, int h, char *label)
 : Fl_Gl_Window(x,y,w,h,label)
@@ -90,6 +119,7 @@ void ModelerView::draw()
 		glEnable( GL_LIGHT0 );
         glEnable( GL_LIGHT1 );
 		glEnable( GL_NORMALIZE );
+		initTexture();
     }
 
   	glViewport( 0, 0, w(), h() );

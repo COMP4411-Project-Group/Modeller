@@ -1,9 +1,10 @@
-// modelerdraw.h
 
-// Contains object and routines related to rendering things
+// modelerdraw_texture.h
 
-#ifndef MODELERDRAW_H
-#define MODELERDRAW_H
+// Contains object and routines related to rendering things, with texture implemented
+
+#ifndef MODELERDRAW_TEXTURE_H
+#define MODELERDRAW_TEXTURE_H
 
 #include <FL/gl.h>
 #include <cstdio>
@@ -93,8 +94,5 @@ void drawCylinder( double h, double r1, double r2 );
 void drawTriangle( double x1, double y1, double z1,
 			       double x2, double y2, double z2,
 			       double x3, double y3, double z3 );
-
-//APIs for drawing texture
-int initTexture();
 
 #endif
