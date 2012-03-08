@@ -35,12 +35,147 @@ void SampleModel::draw()
 
 	// draw the floor
 	setAmbientColor(.1f,.1f,.1f);
-	setDiffuseColor(COLOR_RED);
+	setDiffuseColor(COLOR_GREEN);
+
 	glPushMatrix();
 	glTranslated(-5,0,-5);
 	drawBox(10,0.01f,10);
 	glPopMatrix();
 
+	setDiffuseColor(1.0f, 1.0f, 1.0f);
+
+	glTranslated(0, 0, 2);
+
+	// palm
+	glPushMatrix();
+		glTranslated(VAL(XPOS), VAL(YPOS), VAL(ZPOS));
+		glTranslated(0, 1, 0);
+		// drawBox(2, 0.5, 1);
+
+		glTranslated(0, 0.25, 0);
+
+		// thumb
+		glPushMatrix();
+			glRotated(45, 0, 1, 0);
+			glTranslated(0, 0, -2);
+			drawCylinder(2.0, 0.3, 0.3);
+
+			glPushMatrix();
+				glTranslated(0, 0, -1.2);
+				drawCylinder(1.2, 0.25, 0.25);
+
+				glPushMatrix();
+					glTranslated(0, 0, -0.6);
+					drawCylinder(0.6, 0.2, 0.2);
+				glPopMatrix();
+
+			glPopMatrix();
+
+		glPopMatrix();
+
+		// forefinger
+		glPushMatrix();
+			glRotated(10, 0, 1, 0);
+			glTranslated(0.5, 0, -3);
+			drawCylinder(3, 0.25, 0.25);
+
+			glPushMatrix();
+				glRotated(5, 0, 1, 0);
+				glTranslated(0, 0, -2);
+				drawCylinder(2, 0.2, 0.2);
+
+				glPushMatrix();
+					glTranslated(0, 0, -1.2);
+					drawCylinder(1.2, 0.18, 0.18);
+
+					glPushMatrix();
+						glTranslated(0, 0, -0.5);
+						drawCylinder(0.5, 0.15, 0.15);
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+
+		glPopMatrix();
+
+		// middle finger
+		glPushMatrix();
+			glTranslated(1, 0, -3);
+			drawCylinder(3, 0.25, 0.25);
+
+			glPushMatrix();
+				glTranslated(0, 0, -2);
+				drawCylinder(2, 0.2, 0.2);
+
+				glPushMatrix();
+					glTranslated(0, 0, -1.5);
+					drawCylinder(1.5, 0.18, 0.18);
+
+					glPushMatrix();
+						glTranslated(0, 0, -0.6);
+						drawCylinder(0.6, 0.15, 0.15);
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+
+		glPopMatrix();
+
+		// ring finger
+		glPushMatrix();
+			glPushMatrix();
+			glRotated(-10, 0, 1, 0);
+			glTranslated(1.5, 0, -3);
+			drawCylinder(3, 0.25, 0.25);
+
+			glPushMatrix();
+				glRotated(-5, 0, 1, 0);
+				glTranslated(0, 0, -2);
+				drawCylinder(2, 0.2, 0.2);
+
+				glPushMatrix();
+					glTranslated(0, 0, -1.5);
+					drawCylinder(1.5, 0.18, 0.18);
+
+					glPushMatrix();
+						glTranslated(0, 0, -0.5);
+						drawCylinder(0.5, 0.15, 0.15);
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+
+		glPopMatrix();
+
+		// little finger
+		glPushMatrix();
+			glPushMatrix();
+			glRotated(-20, 0, 1, 0);
+			glTranslated(2, 0, -3);
+			drawCylinder(3, 0.25, 0.25);
+
+			glPushMatrix();
+				glRotated(-10, 0, 1, 0);
+				glTranslated(0, 0, -1.5);
+				drawCylinder(1.5, 0.18, 0.18);
+
+				glPushMatrix();
+					glTranslated(0, 0, -1.2);
+					drawCylinder(1.2, 0.15, 0.15);
+
+					glPushMatrix();
+						glTranslated(0, 0, -0.4);
+						drawCylinder(0.5, 0.12, 0.12);
+					glPopMatrix();
+				glPopMatrix();
+
+			glPopMatrix();
+
+		glPopMatrix();
+
+	glPopMatrix();
+
+	/*
 	// draw the sample model
 	setAmbientColor(.1f,.1f,.1f);
 	setDiffuseColor(COLOR_GREEN);
@@ -68,6 +203,7 @@ void SampleModel::draw()
 		glPopMatrix();
 
 	glPopMatrix();
+	*/
 }
 
 int main()

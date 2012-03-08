@@ -252,7 +252,7 @@ Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {"Save Bitmap File", 0,  (Fl_Callback*)ModelerUserInterface::cb_Save1, 0, 128, 0, 0, 14, 0},
  {"Open Position File", 0, (Fl_Callback*)ModelerUserInterface::cb_OpenPos, 0, 0, 0, 0, 14, 0},
  {"Save Position File", 0, (Fl_Callback*)ModelerUserInterface::cb_SavePos, 0, 128, 0, 0, 14, 0},
- {"Exit", 0,  (Fl_Callback*)ModelerUserInterface::cb_Exit, 0, 0, 0, 0, 14, 0},
+ {"Exit", FL_CTRL + 'w',  (Fl_Callback*)ModelerUserInterface::cb_Exit, 0, 0, 0, 0, 14, 0},
  {0},
  {"View", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Normal", 0,  (Fl_Callback*)ModelerUserInterface::cb_Normal, 0, 12, 0, 0, 14, 0},
