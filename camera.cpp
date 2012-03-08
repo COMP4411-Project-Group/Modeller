@@ -178,9 +178,60 @@ void Camera::applyViewingTransform() {
 
 	// Place the camera at mPosition, aim the camera at
 	// mLookAt, and twist the camera such that mUpVector is up
+	/*
 	gluLookAt(	mPosition[0], mPosition[1], mPosition[2],
 				mLookAt[0],   mLookAt[1],   mLookAt[2],
 				mUpVector[0], mUpVector[1], mUpVector[2]);
+				*/
+	lookAt(	Vec3f(mPosition[0], mPosition[1], mPosition[2]), 
+				Vec3f(mLookAt[0],   mLookAt[1],   mLookAt[2]), 
+				Vec3f(mUpVector[0], mUpVector[1], mUpVector[2]));
+}
+
+void Camera::lookAt(Vec3f eye, Vec3f at, Vec3f up) {
+	float eyex = eye[0];
+	float eyey = eye[1];
+	float eyez = eye[2];
+
+	float atx = at[0];
+	float aty = at[1];
+	float atz = at[2];
+	
+	float upx = up[0];
+	float upy = up[1];
+	float upz = up[2];
+	
+	float vpnx = atx - eyex;
+	float vpny = aty - eyey;
+	float vpnz = atz - eyez;
+	
+	//Normalize it
+	float len = sqrt(vpnx * vpnx + vpny * vpny + vpnz * vpnz);
+	vpnx /= len;
+	vpny /= len;
+	vpnz /= len;
+	
+	//Calculate right vector
+	float rvx = vpny * upz - vpnz * upy;
+	float rvy = vpnz * upx - vpnx * upz;
+	float rvz = vpnx * upy - vpny * upx;
+
+	//Calculate new up vector
+	float nux = rvy * vpnz - rvz * vpny;
+	float nuy = rvz * vpnx - rvx * vpnz;
+	float nuz = rvx * vpny - rvy * vpnx;
+	
+	//Put it all in a pretty Matrix
+	float mat[16] = {
+		rvx, nux, -vpnx, 0,
+		rvy, nuy, -vpny, 0,
+		rvz, nuz, -vpnz, 0,
+		0, 0, 0, 1
+	};
+	
+	//Apply the matrix and translate to eyepoint
+	glMultMatrixf(mat);
+	glTranslatef(-eyex, -eyey, -eyez);
 }
 
 #pragma warning(pop)
