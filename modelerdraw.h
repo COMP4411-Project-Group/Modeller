@@ -80,6 +80,8 @@ void closeRayFile();
 // Draw a sphere of radius r
 void drawSphere(double r);
 
+void drawWeb(int, int);
+
 // Draw an axis-aligned box from origin to (x,y,z)
 void drawBox( double x, double y, double z );
 

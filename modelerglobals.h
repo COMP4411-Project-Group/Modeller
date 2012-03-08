@@ -10,9 +10,14 @@
 // of the controls from the user interface.
 enum SampleModelControls
 { 
+	LEVEL_OF_DETAIL, 
+	MOOD,
+	ANIMATE,
 	XPOS, 
 	YPOS, 
 	ZPOS, 
+	SPIDER_ROTATE_Z,
+	BODY_ROTATE_Z,
 	LEFT_TOOTH_ROTATE_Y,
 	RIGHT_TOOTH_ROTATE_Y,
 	LEFT_ANTENNA_ROTATE_Y,
@@ -84,5 +89,6 @@ enum SampleModelControls
 // We'll be getting the instance of the application a lot; 
 // might as well have it as a macro.
 #define VAL(x) (ModelerApplication::Instance()->GetControlValue(x))
+#define SETVAL(x, y) (ModelerApplication::Instance()->SetControlValue(x, y))
 
 #endif
