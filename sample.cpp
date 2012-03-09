@@ -241,8 +241,7 @@ void SampleModel::draw()
 	setDiffuseColor(1, 1, 1);
 
 	glPushMatrix();
-	glTranslated(-5,0,-5);
-	// drawBox(10,0.01f,10);
+	glTranslated(0, -0.3, 0);
 	drawWeb(9, 15);
 	glPopMatrix();
 
