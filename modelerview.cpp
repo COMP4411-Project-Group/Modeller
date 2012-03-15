@@ -1,6 +1,7 @@
 #include "modelerview.h"
 #include "camera.h"
 #include "bitmap.h"
+#include "meta_drawing.h"
 
 #include <FL/Fl.H>
 #include <FL/Fl_Gl_Window.h>
@@ -17,7 +18,7 @@ int initTexture() {
 	int texWidth;
 	int texHeight;
 	//load image from file
-	if((texture = readBMP("texture.bmp", texWidth, texHeight))==NULL) {
+	if((texture = readBMP("texture3.bmp", texWidth, texHeight))==NULL) {
 		printf("Can't load bitmap!\n");
 		return 0;
 	}
@@ -31,7 +32,7 @@ int initTexture() {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE/*GL_REPLACE*/);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight,
 		0, GL_BGR_EXT, GL_UNSIGNED_BYTE,texture);
 	//Typical Texture Generation Using Data From Bitmapt
@@ -107,7 +108,7 @@ int ModelerView::handle(int event)
 static GLfloat lightPosition0[] = { 4, 2, -4, 0 };
 static GLfloat lightDiffuse0[]  = { 1,1,1,1 };
 static GLfloat lightPosition1[] = { -2, 1, 5, 0 };
-static GLfloat lightDiffuse1[]  = { 1, 1, 1, 1 };
+static GLfloat lightDiffuse1[]  = { 2, 2, 2, 2 };
 
 void ModelerView::draw()
 {
@@ -119,7 +120,7 @@ void ModelerView::draw()
 		glEnable( GL_LIGHT0 );
         glEnable( GL_LIGHT1 );
 		glEnable( GL_NORMALIZE );
-		initTexture();
+		//initTexture();
     }
 
   	glViewport( 0, 0, w(), h() );

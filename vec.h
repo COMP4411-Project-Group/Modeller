@@ -317,7 +317,7 @@ public:
 	//---[ Zero Test ]---------------------------
 
 	bool isZero() const { return n[0]==0&&n[1]==0&&n[2]==0&&n[3]==0; }
-	void zeroElements() { memset(n,0,4*sizeof(T)); }
+	void zeroElements() {memset(n,0,4*sizeof(T)); }
 
 	//---[ Normalization ]-----------------------
 

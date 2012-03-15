@@ -3,6 +3,7 @@
 #include "modelerview.h"
 #include "modelerapp.h"
 #include "modelerdraw.h"
+#include "meta_drawing.h"
 #include <FL/gl.h>
 
 #include "modelerglobals.h"
@@ -186,40 +187,40 @@ void setMood() {
 			SETVAL(SPINNERET_ROTATE_Y, -15);
 		} else if (VAL(MOOD) == 3) { // dead
 			SETVAL(SPIDER_ROTATE_Z, -180);
-	
+
 			SETVAL(LEFT_ANTENNA_ROTATE_X, 0);
 			SETVAL(LEFT_ANTENNA_UPPER_ROTATE_X, 60);
 			SETVAL(RIGHT_ANTENNA_ROTATE_X, 0);
 			SETVAL(RIGHT_ANTENNA_UPPER_ROTATE_X, 60);
-	
+
 			SETVAL(LEFT_LEG_1_1_ROTATE_X, 0);
 			SETVAL(LEFT_LEG_1_2_ROTATE_X, 80);
 			SETVAL(LEFT_LEG_1_3_ROTATE_X, 50);
-	
+
 			SETVAL(LEFT_LEG_2_1_ROTATE_X, 5);
 			SETVAL(LEFT_LEG_2_2_ROTATE_X, 70);
 			SETVAL(LEFT_LEG_2_3_ROTATE_X, 60);
-	
+
 			SETVAL(LEFT_LEG_3_1_ROTATE_X, 0);
 			SETVAL(LEFT_LEG_3_2_ROTATE_X, 80);
 			SETVAL(LEFT_LEG_3_3_ROTATE_X, 70);
-	
+
 			SETVAL(LEFT_LEG_4_1_ROTATE_X, 10);
 			SETVAL(LEFT_LEG_4_2_ROTATE_X, 70);
 			SETVAL(LEFT_LEG_4_3_ROTATE_X, 50);
-	
+
 			SETVAL(RIGHT_LEG_1_1_ROTATE_X, 0);
 			SETVAL(RIGHT_LEG_1_2_ROTATE_X, 80);
 			SETVAL(RIGHT_LEG_1_3_ROTATE_X, 50);
-	
+
 			SETVAL(RIGHT_LEG_2_1_ROTATE_X, 5);
 			SETVAL(RIGHT_LEG_2_2_ROTATE_X, 70);
 			SETVAL(RIGHT_LEG_2_3_ROTATE_X, 60);
-	
+
 			SETVAL(RIGHT_LEG_3_1_ROTATE_X, 0);
 			SETVAL(RIGHT_LEG_3_2_ROTATE_X, 80);
 			SETVAL(RIGHT_LEG_3_3_ROTATE_X, 70);
-	
+
 			SETVAL(RIGHT_LEG_4_1_ROTATE_X, 10);
 			SETVAL(RIGHT_LEG_4_2_ROTATE_X, 70);
 			SETVAL(RIGHT_LEG_4_3_ROTATE_X, 50);
@@ -239,14 +240,17 @@ void SampleModel::draw()
 	// draw the floor
 	setAmbientColor(.1f,.1f,.1f);
 	setDiffuseColor(1, 1, 1);
+	//drawSphere(6.0);
+	drawTwoBalls();
 
+	/*
 	glPushMatrix();
 	glTranslated(-5,0,-5);
-	// drawBox(10,0.01f,10);
+	
 	drawWeb(9, 15);
 	glPopMatrix();
 
-	setDiffuseColor(0.2f, 0.1f, 0.1f);
+	setDiffuseColor(0.5f, 0.4f, 0.4f);
 
 	#define DETAIL (VAL(LEVEL_OF_DETAIL))
 
@@ -269,8 +273,8 @@ void SampleModel::draw()
 	if (DETAIL >= 1) {
 		// belly
 		glPushMatrix();
-		glScaled(1.1, 0.7, 0.8);
 		glTranslated(1.5, 0, 0);
+		glScaled(1.1, 0.7, 0.8);
 		drawSphere(1.2);
 
 		// spinneret
@@ -284,7 +288,7 @@ void SampleModel::draw()
 		}
 		glPopMatrix();
 	}
-	
+
 
 	if (DETAIL >= 1) {
 		// body
@@ -297,25 +301,25 @@ void SampleModel::draw()
 				glPopMatrix();
 			// legs
 			if (DETAIL >= 3) {
-		
+
 				// left legs
 				glPushMatrix();
 				glTranslated(0, 0, 0.3);
-	
+
 				if (DETAIL >= 4) {
 					// left 1
 					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
 					glRotated(VAL(LEFT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(LEFT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
 						glRotated(VAL(LEFT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 2);
@@ -327,20 +331,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-	
+
 					// left 2
 					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
 					glRotated(VAL(LEFT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(LEFT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
 						glRotated(VAL(LEFT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 1.5);
@@ -352,20 +356,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-		
+
 					// left 3
 					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
 					glRotated(VAL(LEFT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(LEFT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(LEFT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 1.5);
@@ -377,20 +381,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-					
+
 					// left 4
 					glPushMatrix();
 					glRotated(VAL(LEFT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
 					glRotated(VAL(LEFT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(LEFT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(LEFT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 2);
@@ -403,27 +407,27 @@ void SampleModel::draw()
 					}
 					glPopMatrix();
 				}
-	
+
 				glPopMatrix();
-	
+
 				// right legs
 				glPushMatrix();
 				glTranslated(0, 0, -0.3);
-	
+
 				if (DETAIL >= 4) {
 					// right 1
 					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_Y), 0, 1, 0); // -60
 					glRotated(VAL(RIGHT_LEG_1_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(2, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_Y), 0, 1, 0); // -40
 						glRotated(VAL(RIGHT_LEG_1_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(2, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 2);
@@ -435,20 +439,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-		
+
 					// right 2
 					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_Y), 0, 1, 0); // -30
 					glRotated(VAL(RIGHT_LEG_2_1_ROTATE_X), 1, 0, 0); // -25
 					drawCylinder(1.5, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_Y), 0, 1, 0); // -30
 						glRotated(VAL(RIGHT_LEG_2_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(1.5, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 1.5);
@@ -460,20 +464,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-		
+
 					// right 3
 					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_Y), 0, 1, 0); // 20
 					glRotated(VAL(RIGHT_LEG_3_1_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1.5, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1.5);
 						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(RIGHT_LEG_3_2_ROTATE_X), 1, 0, 0); // 50
 						drawCylinder(1.5, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 1.5);
@@ -485,20 +489,20 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-					
+
 					// right 4
 					glPushMatrix();
 					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_Y), 0, 1, 0); // 60
 					glRotated(VAL(RIGHT_LEG_4_1_ROTATE_X), 1, 0, 0); // -20
 					drawCylinder(2, 0.1, 0.1);
-	
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 2);
 						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_Y), 0, 1, 0); // 20
 						glRotated(VAL(RIGHT_LEG_4_2_ROTATE_X), 1, 0, 0); // 40
 						drawCylinder(2, 0.1, 0.1);
-	
+
 						if (DETAIL >= 6) {
 							glPushMatrix();
 							glTranslated(0, 0, 2);
@@ -514,7 +518,7 @@ void SampleModel::draw()
 
 				glPopMatrix();
 			}
-	
+
 			if (DETAIL >= 3) {
 				// head
 				glPushMatrix();
@@ -527,21 +531,21 @@ void SampleModel::draw()
 					glRotated(VAL(LEFT_TOOTH_ROTATE_Y), 0, 1, 0);
 					drawCylinder(0.25, 0.25, 0.05);
 					glPopMatrix();
-			
+
 					// right tooth
 					glPushMatrix();
 					glTranslated(-0.3, 0, -0.2);
 					glRotated(VAL(RIGHT_TOOTH_ROTATE_Y), 0, 1, 0);
 					drawCylinder(0.25, 0.25, 0.05);
 					glPopMatrix();
-			
+
 					// left antenna
 					glPushMatrix();
 					glTranslated(-0.3, 0, 0.4);
 					glRotated(VAL(LEFT_ANTENNA_ROTATE_Y), 0, 1, 0); // -75
 					glRotated(VAL(LEFT_ANTENNA_ROTATE_X), 1, 0, 0); // -30
 					drawCylinder(1, 0.1, 0.1);
-		
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1);
@@ -551,14 +555,14 @@ void SampleModel::draw()
 						glPopMatrix();
 					}
 					glPopMatrix();
-					
+
 					// right antenna
 					glPushMatrix();
 					glTranslated(-0.3, 0, -0.4);
 					glRotated(VAL(RIGHT_ANTENNA_ROTATE_Y), 0, 1, 0);
 					glRotated(VAL(RIGHT_ANTENNA_ROTATE_X), 1, 0, 0);
 					drawCylinder(1, 0.1, 0.1);
-		
+
 					if (DETAIL >= 5) {
 						glPushMatrix();
 						glTranslated(0, 0, 1);
@@ -574,6 +578,7 @@ void SampleModel::draw()
 			glPopMatrix();
 		}
 	}
+	*/
 
 	glPopMatrix();
 }
