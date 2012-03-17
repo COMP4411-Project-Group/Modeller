@@ -6,6 +6,8 @@
 
 #include "camera.h"
 
+#include "inverse_kinematics.h"
+
 #if _MSC_VER >= 1300
 
 #include <iostream>
@@ -246,6 +248,30 @@ void ModelerUserInterface::cb_m_controlsAnimOnMenu(Fl_Menu_* o, void* v) {
   ((ModelerUserInterface*)(o->parent()->user_data()))->cb_m_controlsAnimOnMenu_i(o,v);
 }
 
+/********************************************************************************/
+void ModelerUserInterface::cb_inverse_kinematics(Fl_Menu_* o, void* v) {
+	((ModelerUserInterface*)(o->parent()->user_data()))->m_inverseKinematicsWindow->show();
+}
+
+void ModelerUserInterface::cb_execute_inverse_kinematics(Fl_Widget* o, void* v) {
+	float left1X = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg1XInput->value());
+	float left1Y = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg1YInput->value());
+	float left1Z = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg1ZInput->value());
+
+	float left2X = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg2XInput->value());
+	float left2Y = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg2YInput->value());
+	float left2Z = atof(((ModelerUserInterface*)(o->user_data()))->leftLeg2ZInput->value());
+
+	float right1X = atof(((ModelerUserInterface*)(o->user_data()))->rightLeg1XInput->value());
+	float right1Y = atof(((ModelerUserInterface*)(o->user_data()))->rightLeg1YInput->value());
+	float right1Z = atof(((ModelerUserInterface*)(o->user_data()))->rightLeg1ZInput->value());
+
+	moveLeftLeg1(left1X, left1Y, left1Z);
+	moveLeftLeg2(left2X, left2Y, left2Z);
+	moveRightLeg1(right1X, right1Y, right1Z);
+}
+/********************************************************************************/
+
 Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {"File", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Save Raytracer File", 0,  (Fl_Callback*)ModelerUserInterface::cb_Save, 0, 0, 0, 0, 14, 0},
@@ -266,6 +292,9 @@ Fl_Menu_Item ModelerUserInterface::menu_m_controlsMenuBar[] = {
  {0},
  {"Animate", 0,  0, 0, 64, 0, 0, 14, 0},
  {"Enable", 0,  (Fl_Callback*)ModelerUserInterface::cb_m_controlsAnimOnMenu, 0, 2, 0, 0, 14, 0},
+ {0},
+ {"Motion", 0, 0, 0, 64, 0, 0, 14, 0},
+ {"Inverse Kinematics", 0, (Fl_Callback*)ModelerUserInterface::cb_inverse_kinematics, 0, 0, 0, 0, 14, 0},
  {0},
  {0}
 };
@@ -325,6 +354,25 @@ ModelerUserInterface::ModelerUserInterface() {
     }
     o->end();
   }
+
+	m_inverseKinematicsWindow = new Fl_Window(650, 300, "Inverse Kinematics");
+		leftLeg1XInput = new Fl_Input(100, 20, 100, 25, "left leg 1 X");
+		leftLeg1YInput = new Fl_Input(300, 20, 100, 25, "left leg 1 Y");
+		leftLeg1ZInput = new Fl_Input(500, 20, 100, 25, "left leg 1 Z");
+
+		leftLeg2XInput = new Fl_Input(100, 70, 100, 25, "left leg 2 X");
+		leftLeg2YInput = new Fl_Input(300, 70, 100, 25, "left leg 2 Y");
+		leftLeg2ZInput = new Fl_Input(500, 70, 100, 25, "left leg 2 Z");
+
+		rightLeg1XInput = new Fl_Input(100, 120, 100, 25, "right leg 1 X");
+		rightLeg1YInput = new Fl_Input(300, 120, 100, 25, "right leg 1 Y");
+		rightLeg1ZInput = new Fl_Input(500, 120, 100, 25, "right leg 1 Z");
+
+		executeInverseKinematicsButton = new Fl_Button(20, 250, 100, 40, "Move");
+		executeInverseKinematicsButton->user_data((void*)(this));
+		executeInverseKinematicsButton->callback(cb_execute_inverse_kinematics);
+
+	m_inverseKinematicsWindow->end();
 }
 
 void ModelerUserInterface::show() {

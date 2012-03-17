@@ -120,7 +120,7 @@ void ModelerView::draw()
 		glEnable( GL_LIGHT0 );
         glEnable( GL_LIGHT1 );
 		glEnable( GL_NORMALIZE );
-		//initTexture();
+		initTexture();
     }
 
   	glViewport( 0, 0, w(), h() );

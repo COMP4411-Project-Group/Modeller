@@ -4,15 +4,16 @@
 const int maxGridSize = 60;
 const float PRECISION = 0.01;
 
+//Definition for single vertex
 struct Cube_Grid_Vertex {
 	Cube_Grid_Vertex() {
 		position = new Vec3<float>();
 		normal = new Vec3<float>();
 		value = 0.0;
 	}
-	Vec3<float>* position;
+	Vec3<float>* position; 
 	float value; //the value of the scalar at this point
-	Vec3<float>* normal;
+	Vec3<float>* normal; //?
 };
 
 //vertex from linear interpolation along edge
@@ -62,7 +63,7 @@ const int verticesAtEndsOfEdges[24]=
 	1,	5,
 	2,	6,
 	3,	7};
-//The tables folowing is gotten from internet
+//The tables folowing is getten from internet
 //gives the edges to interpolate along given vertex inside/outside
 const int edgeTable[256]={
 0x0  , 0x109, 0x203, 0x30a, 0x406, 0x50f, 0x605, 0x70c,
